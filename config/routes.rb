@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   get("/venues", { :controller => "venues", :action => "index" })
   post("/insert_venue_record", { :controller => "venues", :action => "create" })
-  get("/venue/:venue_id", { :controller => "venues", :action => "show" })
+  get("/venues/:id", { :controller => "venues", :action => "show" })
   post("/update_venue/:the_id", { :controller => "venues", :action => "update" })
   get("/delete_venue/:id", { :controller => "venues", :action => "destroy" })
   

@@ -8,29 +8,29 @@ class VenuesController < ApplicationController
   end
 
   def show
-    venue_id = params.fetch("venue_id")
-    matching_venue = Venue.where({ :id => venue_id })
-    @the_venue = matching_venue.at(0)
+    venue_id = params.fetch("id")
+    @the_venue = Venue.where({ :id => venue_id }).at(0)
+    
 
     render({ :template => "venue_templates/details" })
   end
 
   def create
     @venue = Venue.new
-    venue.address = params.fetch("query_address")
-    venue.name = params.fetch("name")
-    venue.neighborhood = params.fetch("neighborhood")
-    venue.save
+    @venue.address = params.fetch("query_address")
+    @venue.name = params.fetch("query_name")
+    @venue.neighborhood = params.fetch("query_neighborhood")
+    @venue.save
 
-    redirect_to("/venues/#{venue.name}")
+    redirect_to("/venues/#{@venue.id}")
   end
   
   def update
-    the_id = params.fetch("venue_id")
+    the_id = params.fetch("the_id")
 
-    @venue = Venue.where({ :id => the_id })
+    venue = Venue.where({ :id => the_id }).at(0)
     venue.address = params.fetch("query_address")
-    venue.name = params.fetch("Query_name")
+    venue.name = params.fetch("query_name")
     venue.neighborhood = params.fetch("query_neighborhood")
     venue.save
     
