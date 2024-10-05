@@ -2,7 +2,7 @@
 #
 # Table name: comments
 #
-#  id         :integer          not null, primary key
+#  id         :bigint           not null, primary key
 #  body       :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
@@ -18,7 +18,7 @@ class Comment < ApplicationRecord
     
     matching_users = User.where({ :id => my_id })
 
-    the_user = matching_users.at(0)
+    @the_user = matching_users.at(0)
     
     return the_user
   end
